@@ -1,6 +1,6 @@
 {
   "name": "react-simple-i18n",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React i18n solution with context API",
   "main": "lib/index.js",
   "scripts": {

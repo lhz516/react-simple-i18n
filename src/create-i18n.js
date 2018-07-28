@@ -21,6 +21,10 @@ export default function createI18n(data, options = {}) {
     listenHandlers = listenHandlers.filter((func) => handler !== func)
   }
 
+  function getLang() {
+    return currentLang
+  }
+
   function setLang(lang) {
     if (lang === currentLang) return
     if (!data[lang]) {
@@ -35,6 +39,7 @@ export default function createI18n(data, options = {}) {
 
   return {
     t,
+    getLang,
     setLang,
     listen,
     unlisten,

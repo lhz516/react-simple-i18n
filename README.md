@@ -55,7 +55,7 @@ render(<App />, document.getElementById('app-root'))
 
 ### createI18n(data, options)
 
-Create an `i18n` object for `I18nProvider`
+Creates an `i18n` object for `I18nProvider`
 
 #### Arguments
 
@@ -67,13 +67,14 @@ Create an `i18n` object for `I18nProvider`
 
 - `i18n`
   - `t` Get translation by language name
+  - `getLang` Get current language
   - `setLang` Set language by language name
   - `listen` Add listener to language change
   - `unlisten` Unbind a listener of language change
 
 ### \<I18nProvider i18n\>
 
-Make `i18n` available to `withI18n` HOC
+Makes `i18n` available to `withI18n` HOC
 
 #### Props
 
@@ -83,6 +84,7 @@ Make `i18n` available to `withI18n` HOC
 ### withI18n(Component)
 
 Connects a React component to `i18n` object.
+Adds `t` and `i18n` to props of wrapped component.
 
 # License
 
