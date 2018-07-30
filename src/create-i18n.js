@@ -2,13 +2,21 @@ let langData
 let currentLang
 let listenHandlers = []
 
-export default function createI18n(data, options = {}) {
+export default function createI18n(data = {}, options = {}) {
+  if (data === null || typeof data !== 'object') {
+    throw new Error('React Simple I18n: Language data should be an object')
+  }
+
+  if (options === null || typeof options !== 'object') {
+    throw new Error('React Simple I18n: Options should be an object')
+  }
+
   const { lang } = options
   langData = data
-  currentLang = lang || 'enUS'
+  currentLang = lang || (data.enUS ? 'enUS' : null)
 
   function t(key) {
-    if (!key) return ''
+    if (!key || !currentLang) return ''
 
     return langData[currentLang][key]
   }
@@ -37,11 +45,16 @@ export default function createI18n(data, options = {}) {
     })
   }
 
+  function _getListenHandlers() {
+    return listenHandlers
+  }
+
   return {
     t,
     getLang,
     setLang,
     listen,
     unlisten,
+    _getListenHandlers,
   }
 }

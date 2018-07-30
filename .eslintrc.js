@@ -4,6 +4,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
+    jest: true,
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   parserOptions: {
@@ -41,7 +42,6 @@ module.exports = {
     'no-multi-spaces': 2,
     'no-multi-str': 2,
     'no-unused-vars': 1,
-    'no-alert': 0,
     'no-console': 1,
     'no-useless-constructor': 1,
     'no-constant-condition': [2, { checkLoops: false }],
@@ -79,9 +79,5 @@ module.exports = {
     'prefer-const': 2,
     'prefer-arrow-callback': 2,
     'template-curly-spacing': [2, 'never'],
-    'react/prop-types': 0,
-    'react/no-direct-mutation-state': 0,
-    'react/no-unescaped-entities': 0,
-    'react/no-find-dom-node': 0,
   },
 }

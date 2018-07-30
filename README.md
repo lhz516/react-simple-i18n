@@ -2,6 +2,7 @@
 
 - React i18n solution with context API, support React 16.3.0+
 - Simple usage, easy to configure
+- 100% test coverage, reliable
 
 ## Usage
 
