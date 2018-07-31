@@ -2,6 +2,18 @@ let langData
 let currentLang
 let listenHandlers = []
 
+export const getNestedValue = (data, keyArr, currentIndex = 0) => {
+  if (currentIndex === keyArr.length) {
+    if (typeof data === 'string') {
+      return data
+    } else {
+      return ''
+    }
+  }
+
+  return getNestedValue(data[keyArr[currentIndex]], keyArr, currentIndex + 1)
+}
+
 export default function createI18n(data = {}, options = {}) {
   if (data === null || typeof data !== 'object') {
     throw new Error('React Simple I18n: Language data should be an object')
@@ -16,9 +28,10 @@ export default function createI18n(data = {}, options = {}) {
   currentLang = lang || (data.enUS ? 'enUS' : null)
 
   function t(key) {
-    if (!key || !currentLang) return ''
+    if (!key || !currentLang || typeof key !== 'string') return ''
 
-    return langData[currentLang][key]
+    const keyArr = key.split('.')
+    return getNestedValue(langData[currentLang], keyArr)
   }
 
   function listen(handler) {

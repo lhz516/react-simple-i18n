@@ -14,9 +14,15 @@ import { createI18n, I18nProvider, withI18n } from 'react-simple-i18n'
 const langData = {
   enUS: {
     projects: 'Projects',
+    nav: {
+      home: 'Home',
+    },
   },
   zhCN: {
     projects: '项目',
+    nav: {
+      home: '首页',
+    },
   },
 }
 
@@ -34,6 +40,7 @@ class Demo extends Component {
     return (
       <div>
         <p>{t('projects')}</p>
+        <p>{t('nav.home')}</p>
         <button onClick={this.handleSetEnglish}>English</button>
         <button onClick={this.handleSetChinese}>中文</button>
       </div>
