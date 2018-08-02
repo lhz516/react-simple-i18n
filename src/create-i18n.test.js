@@ -3,12 +3,16 @@ import createI18n, { getNestedValue } from './create-i18n'
 export const testLangData = {
   enUS: {
     hello: 'Hello',
+    greetings: 'Welcome back! %s%',
+    cars: 'This car is %s%, that car is %s%',
     nav: {
       home: 'Home',
     },
   },
   zhCN: {
     hello: '你好',
+    greetings: '欢迎回来! %s%',
+    cars: '这辆车是%s%，那辆车是%s%',
     nav: {
       home: '首页',
     },
@@ -25,6 +29,19 @@ describe('createI18n', () => {
     i18n.setLang('enUS')
     expect(global.console.error).toBeCalled()
     expect(i18n.t('hello')).toBe('')
+  })
+
+  it('should work with string template', () => {
+    const i18n = createI18n(testLangData)
+    expect(i18n.t('greetings')).toBe('Welcome back! %s%')
+    expect(i18n.t('greetings', 'Hanz')).toBe('Welcome back! Hanz')
+    expect(i18n.t('cars')).toBe('This car is %s%, that car is %s%')
+    expect(i18n.t('cars', 'BMW')).toBe('This car is BMW, that car is %s%')
+    expect(i18n.t('cars', 'BMW', 'TOYOTA')).toBe('This car is BMW, that car is TOYOTA')
+    expect(i18n.t('cars', 'BMW', 'TOYOTA', 'HONDA')).toBe('This car is BMW, that car is TOYOTA')
+    i18n.setLang('zhCN')
+    expect(i18n.t('greetings', 'Hanz')).toBe('欢迎回来! Hanz')
+    expect(i18n.t('cars', 'BMW', 'TOYOTA')).toBe('这辆车是BMW，那辆车是TOYOTA')
   })
 
   it('should create i18n object with valid language data and add/remove listeners', () => {

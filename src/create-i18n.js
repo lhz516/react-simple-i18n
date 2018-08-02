@@ -27,11 +27,21 @@ export default function createI18n(data = {}, options = {}) {
   langData = data
   currentLang = lang || (data.enUS ? 'enUS' : null)
 
-  function t(key) {
+  function t(key, ...args) {
     if (!key || !currentLang || typeof key !== 'string') return ''
 
     const keyArr = key.split('.')
-    return getNestedValue(langData[currentLang], keyArr)
+    const value = getNestedValue(langData[currentLang], keyArr)
+    if (args.length === 0) {
+      return value
+    } else {
+      let i = 0
+      return value.replace(/%s%/gi, () => {
+        const output = args[i]
+        i += 1
+        return typeof output !== 'undefined' ? output : '%s%'
+      })
+    }
   }
 
   function listen(handler) {
