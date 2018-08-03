@@ -84,9 +84,11 @@ Creates an `i18n` object for `I18nProvider`
     - @return {string} current language name, such as `enUS`
   - `setLang(lang)` Set language by language name
     - @param `lang` {string} language name, such as `enUS`
+  - `addLangData(langData)` Async add language data, allow adding multiple languages once
+    - @param `langData` {object} Language object `{ enUS: { key: 'value' } }`
   - `listen(handler)` Add listener to language change
     - @param `handler` {func()} function which will be called when language change
-  - `unlisten` Unbind a listener of language change
+  - `unlisten(handler)` Unbind a listener of language change
     - @param `handler` {func()} function which will be called when language change
 
 ### \<I18nProvider i18n\>

@@ -68,6 +68,10 @@ export default function createI18n(data = {}, options = {}) {
     })
   }
 
+  function addLangData(data) {
+    Object.assign(langData, data)
+  }
+
   function _getListenHandlers() {
     return listenHandlers
   }
@@ -78,6 +82,7 @@ export default function createI18n(data = {}, options = {}) {
     setLang,
     listen,
     unlisten,
+    addLangData,
     _getListenHandlers,
   }
 }

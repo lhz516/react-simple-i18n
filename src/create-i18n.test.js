@@ -20,7 +20,7 @@ export const testLangData = {
 }
 
 describe('createI18n', () => {
-  it('should create i18n object with empty data', () => {
+  it('should create i18n object with empty data and call addLangData correctly', () => {
     const i18n = createI18n()
     expect(typeof i18n).toBe('object')
     expect(i18n.getLang()).toBe(null)
@@ -29,6 +29,10 @@ describe('createI18n', () => {
     i18n.setLang('enUS')
     expect(global.console.error).toBeCalled()
     expect(i18n.t('hello')).toBe('')
+
+    i18n.addLangData(testLangData)
+    i18n.setLang('enUS')
+    expect(i18n.t('hello')).toBe('Hello')
   })
 
   it('should work with string template', () => {
