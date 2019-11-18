@@ -2,6 +2,9 @@
 
 - React i18n solution with context API, support React 16.3.0+
 - Lightweight, simple usage, easy to configure
+    - Lib size: 9.17KB
+    - Minified: 4.76KB (with [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin))
+    - Gzipped: 1.63KB
 - 100% test coverage, reliable
 
 ## Usage
