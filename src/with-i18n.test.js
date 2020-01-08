@@ -2,20 +2,11 @@ import React from 'react'
 import { mount } from 'enzyme'
 import withI18n from './with-i18n'
 
-// TODO after this issue get fixed: https://github.com/airbnb/enzyme/issues/1620
-// jest.mock('./context', () => {
-//   const createI18n = require('./create-i18n').default
-//   const { testLangData } = require('./create-i18n.test')
-//   const context = require('react').createContext(createI18n(testLangData))
-//   return context
-// })
-
 jest.mock('./context', () => {
   const createI18n = require('./create-i18n').default
   const { testLangData } = require('./create-i18n.test')
-  return {
-    Consumer: (props) => props.children(createI18n(testLangData)),
-  }
+  const context = require('react').createContext(createI18n(testLangData))
+  return context
 })
 
 const TestComp = () => (

@@ -3,10 +3,11 @@ import I18nContext from './context'
 
 export default function withI18n(WrappedComp) {
   return class I18nComponent extends Component {
+    updateHandler = () => {
+      this.forceUpdate()
+    }
+
     componentDidMount() {
-      this.updateHandler = () => {
-        this.forceUpdate()
-      }
       this.i18n.listen(this.updateHandler)
     }
 

@@ -1,19 +1,16 @@
 # React Simple I18n
 
-- React i18n solution with context API, support React 16.3.0+
+- React i18n solution with context API, support React 16.3.0+ (16.8.0+ if use hooks)
 - Lightweight, simple usage, easy to configure
-    - Lib size: 9.17KB
-    - Minified: 4.76KB (with [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin))
-    - Gzipped: 1.63KB
+    - Lib size: 13.02KB
+    - Minified: 6.48KB (with [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin))
+    - Gzipped: 2.13KB
 - 100% test coverage, reliable
 
 ## Usage
 
+Define languages data first
 ```jsx
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-import { createI18n, I18nProvider, withI18n } from 'react-simple-i18n'
-
 const langData = {
   enUS: {
     projects: 'Projects',
@@ -30,6 +27,38 @@ const langData = {
     },
   },
 }
+```
+
+Choice A: Use React hook
+```jsx
+import React, { Component } from 'react'
+import { createI18n, I18nProvider, useI18n } from 'react-simple-i18n'
+
+const Demo = () => {
+  const { t, i18n } = useI18n()
+
+  return (
+    <div>
+      <p>{t('projects')}</p>
+      <p>{t('cars', 'BMW', 'TOYOTA')}</p>
+      <p>{t('nav.home')}</p>
+      <button onClick={() => i18n.setLang('enUS')}>English</button>
+      <button onClick={() => i18n.setLang('zhCN')}>中文</button>
+    </div>
+  )
+}
+
+const App = () => (
+  <I18nProvider i18n={createI18n(langData, { lang: 'enUS' })}>
+    <Demo />
+  </I18nProvider>
+)
+```
+
+Choice B: Use traditional HOC
+```jsx
+import React, { Component } from 'react'
+import { createI18n, I18nProvider, withI18n } from 'react-simple-i18n'
 
 class Demo extends Component {
   handleSetEnglish = () => {
@@ -61,8 +90,6 @@ const App = () => (
     <DemoWithI18n />
   </I18nProvider>
 )
-
-render(<App />, document.getElementById('app-root'))
 ```
 
 ## Top Level API
@@ -96,7 +123,7 @@ Creates an `i18n` object for `I18nProvider`
 
 ### \<I18nProvider i18n\>
 
-Makes `i18n` available to `withI18n` HOC
+Makes `i18n` available to `withI18n` HOC and `useI18n` hook
 
 #### Props
 
@@ -107,6 +134,10 @@ Makes `i18n` available to `withI18n` HOC
 
 Connects a React component to `i18n` object.
 Adds `t` and `i18n` to props of wrapped component.
+
+### useI18n()
+
+A React hook that returns an object with `t` and `i18n`.
 
 # License
 
