@@ -1,4 +1,11 @@
-## 1.1.0 - Draft
+## 1.2.1
+
+- Add React 17 to `peerDependencies`
+
+## 1.2.0
+
+- Support React hooks support
+## 1.1.0
 
 - Support nested language data
   - `{ enUS: { nav: { home: 'Home' } } }` can be accessed by `t('nav.home')`
