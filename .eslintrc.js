@@ -1,14 +1,31 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   env: {
     es6: true,
     browser: true,
     node: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  globals: {},
+  plugins: [
+    'prettier',
+    // 'jsx-a11y',
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
   parserOptions: {
     sourceType: 'module',
+    project: ['./tsconfig.eslint.json'],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
   rules: {
     camelcase: [2, { properties: 'never' }],

@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Add TypeScript support
+- Add React 18 as peerDependency
+
 ## 1.2.1
 
 - Add React 17 to `peerDependencies`
