@@ -8,17 +8,13 @@ interface HookedI18n {
 
 export default function useI18n(): HookedI18n {
   const i18n = useContext(I18nContext)
-  const [, setForceUpdate] = useState<undefined>()
+  const [, setForceUpdate] = useState<any>()
 
   useEffect(() => {
-    i18n.listen(() => {
-      setForceUpdate(undefined);
-    })
+    i18n.listen(setForceUpdate)
 
     return () => {
-      i18n.unlisten(() => {
-        setForceUpdate(undefined);
-      })
+      i18n.unlisten(setForceUpdate)
     }
   }, [])
 
