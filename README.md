@@ -1,5 +1,17 @@
 # React Simple I18n
 
+<div>
+  <a href="https://www.npmjs.com/package/react-simple-i18n" title="MIT License">
+    <img src="https://img.shields.io/npm/l/react-simple-i18n.svg?color=brightgreen" alt="MIT License">
+  </a>
+  <a href="https://www.npmjs.com/package/react-simple-i18n" title="Monthly download">
+    <img src="https://img.shields.io/npm/dm/react-simple-i18n.svg?color=green" alt="Monthly download">
+  </a>
+  <a href="https://www.npmjs.com/package/react-simple-i18n" title="Latest version">
+    <img src="https://img.shields.io/npm/v/react-simple-i18n.svg" alt="Latest version">
+  </a>
+</div>
+
 - React i18n solution with context API, support React 16.3.0+ (16.8.0+ if use hooks)
 - Lightweight, simple usage, easy to configure
     - Lib size: 13.02KB
