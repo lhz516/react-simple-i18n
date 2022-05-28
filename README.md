@@ -13,6 +13,7 @@
 </div>
 
 - React i18n solution with context API, support React 16.3.0+ (16.8.0+ if use hooks)
+- Written in TypeScript
 - Lightweight, simple usage, easy to configure
     - Lib size: 13.02KB
     - Minified: 6.48KB (with [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin))
@@ -115,6 +116,7 @@ Creates an `i18n` object for `I18nProvider`
 - `data` Language data object, see usage above
 - `options`
   - `lang` Initial language to use
+  - `defaultText` Function that returns default text if i18n doesn't exist. It takes a single argument which is the i18n key string.
 
 #### Return
 

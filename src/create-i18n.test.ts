@@ -1,4 +1,4 @@
-import createI18n, { getNestedValue } from './create-i18n'
+import createI18n, { getI18nValue } from './create-i18n'
 
 export const testLangData = {
   enUS: {
@@ -24,15 +24,19 @@ describe('createI18n', () => {
     const i18n = createI18n()
     expect(typeof i18n).toBe('object')
     expect(i18n.getLang()).toBe(null)
+    expect(() => i18n.t('hello')).toThrow()
 
     global.console.error = jest.fn()
     i18n.setLang('enUS')
     expect(global.console.error).toBeCalled()
-    expect(i18n.t('hello')).toBe('')
+    expect(() => i18n.t('hello')).toThrow()
 
     i18n.addLangData(testLangData)
     i18n.setLang('enUS')
     expect(i18n.t('hello')).toBe('Hello')
+    expect(i18n.t('home.about')).toBe('home.about')
+    expect(() => i18n.t(undefined)).toThrow()
+    expect(() => i18n.t(null)).toThrow()
   })
 
   it('should work with string template', () => {
@@ -82,17 +86,21 @@ describe('createI18n', () => {
 
   it('should throw error if call with invalid language data and options', () => {
     expect(() => createI18n(null)).toThrow()
+    // @ts-ignore
     expect(() => createI18n({}, 123)).toThrow()
   })
 
-  it('should test different cases of getNestedValue', () => {
-    expect(getNestedValue(testLangData.enUS, ['nav', 'home'])).toBe('Home')
-    expect(getNestedValue(testLangData.zhCN, ['nav', 'home'])).toBe('首页')
-    expect(getNestedValue(testLangData.enUS, ['nav'])).toBe('')
-    expect(getNestedValue(testLangData.enUS, ['hello'])).toBe('Hello')
-    expect(getNestedValue({}, [])).toBe('')
-    expect(getNestedValue({}, [''])).toBe('')
-    expect(getNestedValue({}, ['key'])).toBe('')
-    expect(getNestedValue({ a: 'hi' }, ['key'])).toBe('')
+  it('should test different cases of getI18nValue', () => {
+    expect(getI18nValue(testLangData.enUS, 'nav.home')).toBe('Home')
+    expect(getI18nValue(testLangData.enUS, 'nav.home', key => `EMPTY_${key}`)).toBe('Home')
+    expect(getI18nValue(testLangData.zhCN, 'nav.home')).toBe('首页')
+    expect(getI18nValue(testLangData.enUS, 'nav')).toBe('nav')
+    expect(getI18nValue(testLangData.enUS, 'nav.about')).toBe('nav.about')
+    expect(getI18nValue(testLangData.enUS, 'nav.about', key => `EMPTY_${key}`)).toBe('EMPTY_nav.about')
+    expect(getI18nValue(testLangData.enUS, 'hello')).toBe('Hello')
+    expect(getI18nValue({}, '', key => 'No translation')).toBe('No translation')
+    expect(getI18nValue({}, '')).toBe('')
+    expect(getI18nValue({}, 'key')).toBe('key')
+    expect(getI18nValue({ a: 'hi' }, 'key')).toBe('key')
   })
 })
