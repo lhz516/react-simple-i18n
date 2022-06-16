@@ -1,3 +1,7 @@
+## 1.4.0
+
+- Add `getDefaultText` option in `createI18n`
+
 ## 1.3.0
 
 - Add TypeScript support
