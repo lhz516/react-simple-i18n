@@ -12,7 +12,7 @@
   </a>
 </div>
 
-- React i18n solution with context API, support React 16.3.0+ (16.8.0+ if use hooks)
+- React i18n solution with context API, support React 18 and 19+
 - Written in TypeScript
 - Lightweight, simple usage, easy to configure
     - Lib size: 13.02KB
