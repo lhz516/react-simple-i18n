@@ -42,7 +42,7 @@ const langData = {
 }
 ```
 
-Choice A: Use React hook
+Use React hook
 ```jsx
 import React, { Component } from 'react'
 import { createI18n, I18nProvider, useI18n } from 'react-simple-i18n'
@@ -64,43 +64,6 @@ const Demo = () => {
 const App = () => (
   <I18nProvider i18n={createI18n(langData, { lang: 'enUS' })}>
     <Demo />
-  </I18nProvider>
-)
-```
-
-Choice B: Use traditional HOC
-```jsx
-import React, { Component } from 'react'
-import { createI18n, I18nProvider, withI18n } from 'react-simple-i18n'
-
-class Demo extends Component {
-  handleSetEnglish = () => {
-    this.props.i18n.setLang('enUS')
-  }
-
-  handleSetChinese = () => {
-    this.props.i18n.setLang('zhCN')
-  }
-
-  render() {
-    const { t } = this.props
-    return (
-      <div>
-        <p>{t('projects')}</p>
-        <p>{t('cars', 'BMW', 'TOYOTA')}</p>
-        <p>{t('nav.home')}</p>
-        <button onClick={this.handleSetEnglish}>English</button>
-        <button onClick={this.handleSetChinese}>中文</button>
-      </div>
-    )
-  }
-}
-
-const DemoWithI18n = withI18n(Demo)
-
-const App = () => (
-  <I18nProvider i18n={createI18n(langData, { lang: 'enUS' })}>
-    <DemoWithI18n />
   </I18nProvider>
 )
 ```
@@ -142,12 +105,6 @@ Makes `i18n` available to `withI18n` HOC and `useI18n` hook
 #### Props
 
 - `i18n` I18n object created by `createI18n`
-
-
-### withI18n(Component)
-
-Connects a React component to `i18n` object.
-Adds `t` and `i18n` to props of wrapped component.
 
 ### useI18n()
 

@@ -13,21 +13,34 @@ export interface I18nOptions {
   getDefaultText?: GetDefaultTextType
 }
 
-const getNestedValue = (data: I18nTextData | string, keyArr: Array<string>, currentIndex = 0): string => {
+const getNestedValue = (
+  data: I18nTextData | string,
+  keyArr: Array<string>,
+  currentIndex = 0,
+): string => {
   if (currentIndex === keyArr.length) {
     if (typeof data === 'string') {
       return data
     }
 
     return null
-  } if (typeof data !== 'string') {
-    return getNestedValue(data?.[keyArr?.[currentIndex]], keyArr, currentIndex + 1)
+  }
+  if (typeof data !== 'string') {
+    return getNestedValue(
+      data?.[keyArr?.[currentIndex]],
+      keyArr,
+      currentIndex + 1,
+    )
   }
 
   return null
 }
 
-export const getI18nValue = (data: I18nTextData, key: string, getDefaultText?: GetDefaultTextType): string => {
+export const getI18nValue = (
+  data: I18nTextData,
+  key: string,
+  getDefaultText?: GetDefaultTextType,
+): string => {
   const keyArr = key.split('.')
 
   const text = getNestedValue(data, keyArr)
@@ -39,7 +52,10 @@ export const getI18nValue = (data: I18nTextData, key: string, getDefaultText?: G
   return text || key
 }
 
-export default function createI18n(data: I18nLanguageData = {}, options: I18nOptions = {}) {
+export default function createI18n(
+  data: I18nLanguageData = {},
+  options: I18nOptions = {},
+) {
   let currentLang: string
   let listenHandlers: Array<() => void> = []
 
@@ -58,11 +74,15 @@ export default function createI18n(data: I18nLanguageData = {}, options: I18nOpt
 
   function t(key: string, ...args: string[]) {
     if (!currentLang) {
-      throw new Error('React Simple I18n: Current language must be set before using t()')
+      throw new Error(
+        'React Simple I18n: Current language must be set before using t()',
+      )
     }
 
     if (!key || typeof key !== 'string') {
-      throw new Error('React Simple I18n: t() must have string type as its first argument')
+      throw new Error(
+        'React Simple I18n: t() must have string type as its first argument',
+      )
     }
 
     const value = getI18nValue(langData[currentLang], key, getDefaultText)

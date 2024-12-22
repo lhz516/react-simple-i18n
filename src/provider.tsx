@@ -1,5 +1,4 @@
 import React, { FC, ReactElement } from 'react'
-import PropTypes from 'prop-types'
 import I18nContext, { I18n } from './context'
 
 interface ProviderProps {

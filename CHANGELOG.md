@@ -1,3 +1,7 @@
+# 2.0.0 and later
+
+Use GitHub Releases page to track changelogs: https://github.com/lhz516/react-simple-i18n/releases
+
 ## 1.4.0
 
 - Add `getDefaultText` option in `createI18n`
@@ -14,6 +18,7 @@
 ## 1.2.0
 
 - Support React hooks support
+
 ## 1.1.0
 
 - Support nested language data

@@ -5,7 +5,10 @@ module.exports = {
   transform: {
     '^.+\\.[tj]sx?$': ['babel-jest', { configFile: './jest/babel.config.js' }],
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/\\.pnp\\.[^\\/]+$'],
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/\\.pnp\\.[^\\/]+$',
+  ],
   // moduleNameMapper: {
   //   '^@utils(.*)$': '<rootDir>/src/utils$1',
   //   '^@components(.*)$': '<rootDir>/src/components$1',
@@ -13,7 +16,10 @@ module.exports = {
   //   '^@actions(.*)$': '<rootDir>/src/actions$1',
   //   '^.+\\.(css|pcss)$': '<rootDir>/jest/no-op.js',
   // },
-  collectCoverageFrom: ['<rootDir>/src/**/*.js', '!<rootDir>/src/test-utils/**/*.js'],
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.js',
+    '!<rootDir>/src/test-utils/**/*.js',
+  ],
   coverageDirectory: '<rootDir>/jest/coverage',
   setupFilesAfterEnv: ['<rootDir>/jest/setup.js'],
 }

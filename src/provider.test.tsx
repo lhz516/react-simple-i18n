@@ -1,23 +1,20 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import I18nProvider from './provider'
 import { I18n } from './context'
 
-// TODO mount Provider after this issue get fixed: https://github.com/airbnb/enzyme/issues/1620
-
-const TestChildrenComponent = () => (
-  <div>Test Children Component</div>
-)
+const TestChildrenComponent = () => <div>Test Children Component</div>
 
 describe('I18nProvider', () => {
-  it('shuold render I18nProvider', () => {
-    const mockI18n = {} as jest.MockedObject<I18n>;
+  it('should render I18nProvider', () => {
+    const mockI18n = {} as jest.MockedObject<I18n>
 
-    const wrapper = shallow(
+    const { getByText } = render(
       <I18nProvider i18n={mockI18n}>
         <TestChildrenComponent />
       </I18nProvider>,
     )
-    expect(wrapper.prop('value')).toBe(mockI18n)
+
+    expect(getByText('Test Children Component')).toBeDefined()
   })
 })

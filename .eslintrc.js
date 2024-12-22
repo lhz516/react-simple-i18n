@@ -7,10 +7,6 @@ module.exports = {
     jest: true,
   },
   globals: {},
-  plugins: [
-    'prettier',
-    // 'jsx-a11y',
-  ],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -28,6 +24,14 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': [
+      1,
+      {
+        singleQuote: true,
+        endOfLine: 'auto',
+        semi: false,
+      },
+    ],
     camelcase: [2, { properties: 'never' }],
     curly: [2, 'multi-line'],
     indent: [2, 2, { SwitchCase: 1 }],

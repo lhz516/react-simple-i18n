@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import I18nContext, { handlerFunc, I18n, listenerFunc } from './context'
 
 interface HookedI18n {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { render } from '@testing-library/react'
 import useI18n from './use-i18n'
 
 jest.mock('./context', () => {
@@ -10,20 +10,17 @@ jest.mock('./context', () => {
 })
 
 describe('useI18n', () => {
-  it('shuold work with hooks', () => {
+  it('should work with hooks', () => {
     const TestComp = () => {
       const { t } = useI18n()
-
-      return (
-        <div>{t('hello')}</div>
-      )
+      return <div>{t('hello')}</div>
     }
-    // need `mount` so that `useEffect` will work
-    const wrapper = mount(<TestComp />)
-    expect(wrapper.text()).toBe('Hello')
+
+    const { getByText, unmount } = render(<TestComp />)
+    expect(getByText('Hello')).toBeDefined()
 
     // TODO: find a way to test the length of listenHandlers before and after unmount
-    wrapper.unmount()
-    expect(wrapper.exists()).toBe(false)
+    unmount()
+    expect(() => getByText('Hello')).toThrow()
   })
 })
